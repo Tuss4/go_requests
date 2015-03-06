@@ -20,11 +20,13 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	if resp.StatusCode != 200 {
+		log.Fatal(resp.Status)
+	}
 	err = json.NewDecoder(resp.Body).Decode(&p)
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println(resp.Status)
 	defer resp.Body.Close()
-	fmt.Println(p.Login)
+	fmt.Println(p)
 }
